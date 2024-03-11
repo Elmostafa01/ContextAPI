@@ -3,8 +3,21 @@
 @tailwind utilities;
 
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevents scrolling if content exceeds viewport */
+}
+
 body {
-  font-family: sans-serif;
+  overflow-y: scroll;
 }
 
 .toggle-container {
@@ -28,7 +41,7 @@ body {
   }
   
   .toggle {
-    width: 100%;
+    width: 80%;
     height: 100%;
     overflow: visible;
   }
@@ -92,3 +105,23 @@ body {
   .toggle-input:checked + .toggle .toggle-icon.off {
     fill: var(--active-color);
   }
+
+  .line-name {
+    position: relative;
+  }
+  .line-name::before {
+    content: '';
+    position: absolute;
+    width:40%;
+    height: 2px;
+    background: linear-gradient(to right, gray , transparent );
+    bottom: 0;
+    left: 0;
+    border-radius: 30px;
+  }
+
+  .custom-height {
+    width: 100vw;
+    height: calc(100vh - 4rem);
+  }
+

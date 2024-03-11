@@ -1,19 +1,32 @@
 import { IoLogoFoursquare } from "react-icons/io";
 import { TbShoppingBag } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import CartContext from "../context/CartContext";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+
 
 
 const Navbar = () => {
+  const { items } = useContext(CartContext);
+
+  const {theme, changeTheme} = useContext(ThemeContext);
+
+
+ // console.log(items);
+  
+
   return (
-    <div className="bg-sky-400 flex items-center w-screen justify-evenly gap-[20rem] h-16 px-16">
+    <div className={`${theme === "light" ? "bg-slate-200" : "bg-slate-800"} 
+    flex items-center w-full justify-between transition-colors sm:justify-evenly md:gap-[15rem]  h-16 px-16`}>
       <div className="logo-container">
         <Link className="logo flex items-center cursor-pointer" to={"/"}>
-          <IoLogoFoursquare color="white" className="text-4xl" />
-          <span className="text-white text-2xl font-bold">lex</span>
+          <IoLogoFoursquare color="#1868e3" className="text-4xl" />
+          <span className="text-[#1868e3] text-2xl font-bold translate-x-[-8px]">OGO</span>
         </Link>
       </div>
       <div className="toggle-container">
-        <input type="checkbox" className="toggle-input" />
+        <input onClick={() => changeTheme()} type="checkbox" className="toggle-input" />
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292 142" className="toggle">
             <path d="M71 142C31.7878 142 0 110.212 0 71C0 31.7878 31.7878 0 71 0C110.212 0 119 30 146 30C173 30 182 0 221 0C260 0 292 31.7878 292 71C292 110.212 260.212 142 221 142C181.788 142 173 112 146 112C119 112 110.212 142 71 142Z" className="toggle-background"></path>
             <rect rx="6" height="64" width="12" y="39" x="64" className="toggle-icon on"></rect>
@@ -30,9 +43,9 @@ const Navbar = () => {
         </svg>
        </div>
       <div className="cart-container">
-        <Link to="/checkout" className="cart bg-sky-100 rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer">
+        <Link to="/checkout" className="cart bg-sky-50 rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer">
           <TbShoppingBag className="text-sky-900" fontSize={24}/>
-          <span className="text-sky-900 text-l font-bold">0</span>
+          <span className="text-sky-900 text-l font-bold">{items.length}</span>
         </Link>
       </div>
     </div>
