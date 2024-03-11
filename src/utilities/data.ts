@@ -1,4 +1,11 @@
-export const data = [
+export type Product = {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+}
+
+export const data:Product[] = [
     {
         id: 1,
         name: 'Nike Air Max 90',
